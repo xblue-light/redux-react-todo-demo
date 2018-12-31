@@ -1,11 +1,16 @@
 import React from 'react';
+import DatePickerComp from './DatePickerComp';
 
 class NewPost extends React.Component {
+
     state = {
-        title: '', body: ''
+        title: '', 
+        body: '',
+        firstName: '',
+        startDate: new Date()
     };
 
-    handleInputChange = e => {
+    handleInputChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         });
@@ -26,7 +31,10 @@ class NewPost extends React.Component {
 
     handleReset = () => {
         this.setState({
-            title: '', body: ''
+            title: '',
+            startDate: new Date(),
+            firstName: '',
+            body: ''
         });
         console.log("handleReset => Triggered! Resetting state of input fields.");
     };
@@ -45,6 +53,21 @@ class NewPost extends React.Component {
                     value={ this.state.title }
                     />
                 </div>
+                <div className="form-group">
+                    <DatePickerComp />
+                </div>
+
+                <div className="form-group">
+                    <input
+                        type="text"
+                        placeholder="Enter your first name"
+                        className="form-control"
+                        name="firstName"
+                        onChange={ this.handleInputChange }
+                        value={this.state.firstName}
+                    />
+                </div>
+
                 <div className="form-group">
                     <textarea
                     cols="19"

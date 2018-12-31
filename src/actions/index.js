@@ -9,9 +9,9 @@ const apiURL = 'http://localhost:4000/posts';
 //it fires a sync action with the action type and payload.
 
 //ASYNC ACTION
-export const createPost = ({ title, body }) => {
+export const createPost = ({ title, startDate, body }) => {
     return (dispatch) => {
-        return axios.post(`${apiURL}/add`, {title, body})
+        return axios.post(`${apiURL}/add`, {title, startDate, body})
             .then(response => {
                 dispatch(createPostSuccess(response.data))
             })
@@ -28,6 +28,7 @@ export const createPostSuccess = (data) => {
         payload: {
         _id: data._id,
         title: data.title,
+        startDate: data.startDate,
         body: data.body
         }
     }

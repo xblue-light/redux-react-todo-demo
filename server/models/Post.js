@@ -4,10 +4,16 @@ const Schema = mongoose.Schema;
 // Define collection and schema for Post
 let Post = new Schema({
   title: {
-    type: String
+    type: String,
+    required: true,
+    maxlength: 25
   },
-  body: {
+  startDate: {
     type: String
+ },
+  body: {
+    type: String,
+    maxlength: 150
   }
 },{
     collection: 'posts'
