@@ -9,11 +9,12 @@ const styles = {
   maxWidth: '500px'
 };
 
-export default ({ post: { title, startDate, body, _id }, onDelete }) => {
+export default ({ post: { title, startDate, firstName, body, _id }, onDelete }) => {
   return (
     <div style={styles}>
         <h2>{title}</h2>
-        <p>{startDate}</p>
+        <p><strong>{startDate}</strong></p>
+        <p>{firstName}</p>
         <p>{body}</p>
         <button className="btn btn-danger" 
                 type="button" 

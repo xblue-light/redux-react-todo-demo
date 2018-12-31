@@ -11,6 +11,9 @@ let Post = new Schema({
   startDate: {
     type: String
  },
+ firstName: {
+   type: String
+ },
   body: {
     type: String,
     maxlength: 150

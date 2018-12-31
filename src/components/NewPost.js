@@ -1,14 +1,20 @@
 import React from 'react';
-import DatePickerComp from './DatePickerComp';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 class NewPost extends React.Component {
 
     state = {
-        title: '', 
-        body: '',
+        title: '',
         firstName: '',
-        startDate: new Date()
+        startDate: new Date(),
+        body: ''
     };
+
+    updateDatePickerState = (date) => {
+        console.log(date.toISOString());
+        this.setState({startDate: date});
+    }
 
     handleInputChange = (e) => {
         this.setState({
@@ -32,7 +38,6 @@ class NewPost extends React.Component {
     handleReset = () => {
         this.setState({
             title: '',
-            startDate: new Date(),
             firstName: '',
             body: ''
         });
@@ -43,6 +48,7 @@ class NewPost extends React.Component {
         return (
             <div>
                 <form onSubmit={ this.handleSubmit }>
+                
                 <div className="form-group">
                     <input
                     type="text"
@@ -54,7 +60,10 @@ class NewPost extends React.Component {
                     />
                 </div>
                 <div className="form-group">
-                    <DatePickerComp />
+                    <DatePicker 
+                        onChange={ this.updateDatePickerState }
+                        selected={ this.state.startDate } 
+                    />
                 </div>
 
                 <div className="form-group">
@@ -64,7 +73,7 @@ class NewPost extends React.Component {
                         className="form-control"
                         name="firstName"
                         onChange={ this.handleInputChange }
-                        value={this.state.firstName}
+                        value={ this.state.firstName } 
                     />
                 </div>
 
@@ -79,6 +88,7 @@ class NewPost extends React.Component {
                     value={ this.state.body }>
                     </textarea>
                 </div>
+
                 <div className="form-group">
                     <button type="submit" className="btn btn-primary">Add Post</button>
                     <button type="button" className="btn btn-warning" onClick={ this.handleReset }>
