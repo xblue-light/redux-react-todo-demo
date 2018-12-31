@@ -1,3 +1,3 @@
 module.exports = {
-    DB: 'mongodb://<user>:<pass>@ds12345.mlab.com:00000/database-collection-name'
+    DB: 'mongodb://admin:mongodb123@ds225442.mlab.com:25442/rainbow-valley-cloudstorage'
 };
