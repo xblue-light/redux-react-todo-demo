@@ -19,6 +19,8 @@ export const createPost = ({ title, startDate, firstName, body }) => {
         })
         .then(response => {
             dispatch(createPostSuccess(response.data))
+            const postObject = JSON.stringify(response.data);
+            console.log("createPost => " + postObject);
         })
         .catch(error => {
             throw(error);
@@ -31,11 +33,11 @@ export const createPostSuccess = (data) => {
     return {
         type: ADD_POST,
         payload: {
-        _id: data._id,
-        title: data.title,
-        startDate: data.startDate,
-        firstName: data.firstName,
-        body: data.body
+            _id: data._id,
+            title: data.title,
+            startDate: data.startDate,
+            firstName: data.firstName,
+            body: data.body
         }
     }
 };
@@ -46,6 +48,7 @@ export const deletePost = id => {
         return axios.get(`${apiURL}/delete/${id}`)
             .then(response => {
                 dispatch(deletePostSuccess(response.data))
+                console.log("deletePost=> " + JSON.stringify(response.data))
         })
         .catch(error => {
             throw(error);
@@ -69,6 +72,7 @@ export const fetchAllPosts = () => {
         return axios.get(apiURL)
             .then(response => {
                 dispatch(fetchPosts(response.data))
+                console.log("fetchAllPosts => " + JSON.stringify(response.data));
         })
         .catch(error => {
             throw(error);

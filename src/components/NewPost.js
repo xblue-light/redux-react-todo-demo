@@ -8,8 +8,31 @@ class NewPost extends React.Component {
         title: '',
         firstName: '',
         startDate: new Date(),
+        isA: false,
+        isB: false,
+        isC: false,
         body: ''
     };
+
+    toggleCheckboxIsA = () => {
+        this.setState(prevState => ({
+            // basically means set the value to be NOT the previous state value
+            // example if checkbox was false previously, set it to true 
+            // because prev. state was false
+            isA: !prevState.isA,
+        }));
+    }
+
+    toggleCheckboxIsB = () => {
+        this.setState(prevState => ({
+            isB: !prevState.isB,
+        }));
+    }
+    toggleCheckboxIsC = () => {
+        this.setState(prevState => ({
+            isC: !prevState.isC,
+        }));
+    }
 
     updateDatePickerState = (date) => {
         console.log(date.toISOString());
@@ -33,6 +56,22 @@ class NewPost extends React.Component {
             this.handleReset();
             console.log("handleSubmit => " + JSON.stringify(this.state));
         }
+
+        // for all the keys(checkboxes) in current state with values equal to true(checked)
+        // store those keys into the empty array 'arr'
+        let arr = [];
+        for (var key in this.state) {
+            if(this.state[key] === true) {
+                arr.push(key);
+            }
+        }
+        console.log(arr);
+
+        // cast/convert the array 'arr' from above into an object with toString()
+        let checkBoxArrayData = {
+            check: arr.toString() 
+        };
+        console.log("checkBoxArrayData => " + JSON.stringify(checkBoxArrayData))
     };
 
     handleReset = () => {
@@ -65,7 +104,37 @@ class NewPost extends React.Component {
                         selected={ this.state.startDate } 
                     />
                 </div>
-
+                <div className="form-check">
+                    <label className="form-check-label">
+                    <input type="checkbox"
+                           checked={this.state.isA}
+                           onChange={this.toggleCheckboxIsA}
+                           className="form-check-input"
+                    />
+                    Checkbox = A
+                    </label>
+                </div>
+                <div className="form-check">
+                    <label className="form-check-label">
+                    <input type="checkbox"
+                           checked={this.state.isB}
+                           onChange={this.toggleCheckboxIsB}
+                           className="form-check-input"
+                    />
+                    Checkbox = B
+                    </label>
+                </div>
+                <div className="form-check">
+                    <label className="form-check-label">
+                    <input type="checkbox"
+                           checked={this.state.isC}
+                           onChange={this.toggleCheckboxIsC}
+                           className="form-check-input"
+                    />
+                    Checkbox = C
+                    </label>
+                </div>
+                <br/>
                 <div className="form-group">
                     <input
                         type="text"

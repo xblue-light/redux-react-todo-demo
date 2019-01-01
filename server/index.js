@@ -9,11 +9,6 @@ import postroutes from './routes/PostRoute';
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-// ./config/DB.js
-// module.exports = {
-//     DB: 'mongodb://uri:000000'
-// };
-
 // mongoose connection
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true } ).then (
